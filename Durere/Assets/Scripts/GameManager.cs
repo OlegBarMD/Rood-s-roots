@@ -1,17 +1,18 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int _score;
+    public Animation Animator;
 
-    public void GameOver()
+    public void LoadMainScene()
     {
-        print("you lose");
+        SceneManager.LoadScene("Game");
     }
 
-    public void AddScore()
+    public void RestartGame()
     {
-        _score++;
+        SceneManager.LoadScene("Game");
     }
 }
 

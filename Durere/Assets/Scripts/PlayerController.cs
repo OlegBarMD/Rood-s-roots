@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     private float PlayerSpeed = 5f;
     public  float Speed = -9.81f;
     private Vector2 _movementDirection;
+    public MapGenerator MapSpawner;
 
     private void Update()
     {
@@ -15,8 +16,16 @@ public class PlayerController : MonoBehaviour
         transform.Translate(_movementDirection);
     }
 
+    private void Start()
+    {
+        MapSpawner.GenerateMap();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        FindObjectOfType<GameManager>().GameOver();
+        if (collision.gameObject.CompareTag("SpawnTrigger"))
+        {
+            MapSpawner.GenerateMap();
+        }
     }
 }
